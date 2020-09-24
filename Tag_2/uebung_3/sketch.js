@@ -8,28 +8,42 @@ function draw() {
   strokeWeight(2);
   background(194, 223, 227);
 
-  for(let x=1;x<=5;x++){
-    stroke(255);
-      rect(25*x,25*x,200,400);
-      }
 
-  for(let x=1;x<=5;x++){
-    stroke(255);
-      rect(25*x,25*x,400,200);
+  for (let x = 100; x <= width; x += 150) {
+    for (let y = 0; y <= height; y += 100) {
+      stroke(0);
+      fill(100, 100);
+      ellipse(x, y, 100, 100);
 
-      }
+    }
+  }
 
-  for(let x=2;x<=10;x++){
-    stroke(255);
-      rect(25*x,25*x,400,200);
 
-      }
+  for (let x = 0; x <= width; x += 150) {
+    for (let y = 0; y <= height; y += 100) {
+      stroke(0);
+      fill(255, 100);
+      ellipse(x, y, 100, 100);
 
-  for(let x=2;x<=10;x++){
-    stroke(255);
-      rect(25*x,25*x,200,400);
+    }
 
-      }
+  }
+
+  for (let x = 50; x <= width; x += 150) {
+    for (let y = 50; y <= height; y += 100) {
+      stroke(0);
+      fill(200, 100);
+      ellipse(x, y, 100, 100);
+
+
+    }
+
+  }
+
+
+
+
+
 
 
 }
