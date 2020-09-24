@@ -32,8 +32,8 @@ function draw() {
   for (let x = 50; x <= width; x += 150) {
     for (let y = 50; y <= height; y += 100) {
       stroke(0);
-      fill(200, 100);
-      ellipse(x, y, 100, 100);
+      fill(50, 100, 120, 100);
+      ellipse(x, y, 80, 80);
 
 
     }
