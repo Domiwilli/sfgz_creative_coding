@@ -20,7 +20,7 @@ function draw() {
 
 
   for (let x = 0; x <= width; x += 150) {
-    for (let y = 0; y <= height; y += 100) {
+    for (let y = 0; y <= mouseY; y += 100) {
       stroke(0);
       fill(255, 100);
       ellipse(x, y, 100, 100);
@@ -29,12 +29,11 @@ function draw() {
 
   }
 
-  for (let x = 50; x <= width; x += 150) {
+  for (let x = 50; x <= mouseX; x += 150) {
     for (let y = 50; y <= height; y += 100) {
       stroke(0);
       fill(50, 100, 120, 100);
       ellipse(x, y, 80, 80);
-
 
     }
 
