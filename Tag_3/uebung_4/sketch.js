@@ -1,11 +1,27 @@
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(displayWidth, displayHeight);
+  angleMode(DEGREES);
 }
 
 function draw() {
-  background(220);
+  background(0);
+
 
   noFill();
+  stroke(215, 190, 168);
+
+  beginShape();
+  vertex(100, 100);
+  quadraticVertex(100, 50, 150, 50);
+  quadraticVertex(200, 50, 200, 0);
+  endShape(CLOSE)
+
+  beginShape();
+  vertex(100, 0);
+  quadraticVertex(100, 50, 150, 50);
+  quadraticVertex(200, 50, 200, 100);
+  endShape(CLOSE)
+
   beginShape();
   vertex(200, 200);
   quadraticVertex(200, 150, 250, 150);
@@ -16,6 +32,6 @@ function draw() {
   vertex(200, 100);
   quadraticVertex(200, 150, 250, 150);
   quadraticVertex(300, 150, 300, 200);
-
   endShape(CLOSE)
+
 }

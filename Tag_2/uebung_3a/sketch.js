@@ -8,7 +8,7 @@ var oben = 0;
 var seitlich = 30;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(displayWidth, displayHeight);
 
   noFill();
   var gui = createGui('p5.gui');
