@@ -1,7 +1,8 @@
 var gui;
 
-var distanz = 100;
+var distanz = 50;
 var rotation = 360;
+var groesse = 300;
 
 function setup() {
   createCanvas(displayWidth, displayHeight);
@@ -9,7 +10,7 @@ function setup() {
 
   sliderRange(100, 200);
   var gui = createGui('p5.gui');
-  gui.addGlobals('distanz','rotation');
+  gui.addGlobals('distanz','rotation','groesse');
   noLoop();
 }
 
@@ -23,12 +24,13 @@ function draw() {
   for (let x = 0; x < width; x += distanz) {
     for (let y = 0; y < height; y += distanz) {
 
-  push();
-    beginShape();
-     translate(50, 50);
-     rotate(rotation);
-     translate(-50, -50);
 
+  push();
+  translate(50 + groesse, 50 + groesse);
+  rotate(rotation + x + y);
+  translate(-50 + groesse, -50 + groesse);
+
+      beginShape();
       vertex(0 + x, 0 + y);
       quadraticVertex(0 + x, 50 + y, 50 + x, 50 + y);
       quadraticVertex(100 + x, 50 + y, 100 + x, 100 + y);
@@ -38,9 +40,9 @@ function draw() {
 
     push();
       beginShape();
-      translate(50, 50);
-      rotate(rotation);
-      translate(-50, -50);
+      translate(50 + groesse, 50 + groesse);
+      rotate(rotation + x + y);
+      translate(-50 + groesse, -50 + groesse);
       vertex(0 + x, 100 + y);
       quadraticVertex(50 + x, 100 + y, 50 + x, 50 + y);
       quadraticVertex(50 + x, 0 + y, 100 + x, 0 + y);
