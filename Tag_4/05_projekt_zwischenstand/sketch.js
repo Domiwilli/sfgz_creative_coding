@@ -3,7 +3,7 @@
 var gui;
 
 var distanz = 100;
-var distanz2 = 150;
+var distanz2 = 200;
 var rotation = 360;
 var farbe = (255, 0, 255);
 
@@ -77,7 +77,7 @@ function draw() {
       beginShape();
 
       translate(50 + z, 50 + g);
-      rotate(rotation);
+      rotate(-rotation);
       translate(-1*(50 + z), -1*(50 + g));
       vertex(0 + z, 0 + g);
       quadraticVertex(0 + z, 50 + g, 50 + z, 50 + g);
@@ -93,7 +93,7 @@ for (let z = 0; z < width; z += distanz2) {
 push();
   beginShape();
   translate(50 + z, 50 + g);
-  rotate(rotation);
+  rotate(-rotation);
   translate(-1*(50 + z), -1*(50 + g));
   vertex(0 + z, 100 + g);
   quadraticVertex(50 + z, 100 + g, 50 + z, 50 + g);
