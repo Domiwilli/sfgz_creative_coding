@@ -4,6 +4,7 @@ var gui;
 
 var distanz = 100;
 var distanz2 = 200;
+var distanz3 = 300;
 var rotation = 360;
 var farbe = (255, 0, 255);
 
@@ -55,14 +56,7 @@ function draw() {
       quadraticVertex(50 + x, 0 + y, 100 + x, 0 + y);
       endShape(CLOSE)
 
-
-  pop();
-      /*beginShape();
-      vertex(0, 100);
-      quadraticVertex(50, 100, 50, 50);
-      quadraticVertex(50, 0, 100, 0);
-      endShape(CLOSE)*/
-
+pop();
 }
   }
 
@@ -104,6 +98,26 @@ push();
 pop();
 
 }}
+
+
+for (let n = 0; n < width; n += distanz3) {
+
+push();
+beginShape();
+translate(50 + n, 50 + n);
+rotate(-rotation);
+translate(-1*(50 + n), -1*(50 + n));
+vertex(0 + n, 100 + n);
+quadraticVertex(50 + n, 100 + n, 50 + n, 50 + n);
+quadraticVertex(50 + n, 0 + n, 100 + n, 0 + n);
+endShape(CLOSE)
+
+
+pop();
+
+}
+
+
 
 
 }
