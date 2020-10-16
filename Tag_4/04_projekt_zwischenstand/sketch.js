@@ -1,6 +1,6 @@
 var gui;
 
-var distanz = 50;
+var distanz = 100;
 var rotation = 360;
 
 function setup() {
@@ -9,7 +9,7 @@ function setup() {
 
   sliderRange(100, 200);
   var gui = createGui('p5.gui');
-  gui.addGlobals('distanz', 'rotation', 'groesse');
+  gui.addGlobals('distanz','rotation');
   noLoop();
 }
 
@@ -21,32 +21,33 @@ function draw() {
 
 
   for (let x = 0; x < width; x += distanz) {
-    for (let y = 0; y < height; y += rotation) {
+    for (let y = 0; y < height; y += distanz) {
 
+  push();
 
-      push();
-      translate(50, 50);
-      rotate(rotation + x + y);
-      translate(-50, -50);
       beginShape();
       vertex(0 + x, 0 + y);
       quadraticVertex(0 + x, 50 + y, 50 + x, 50 + y);
       quadraticVertex(100 + x, 50 + y, 100 + x, 100 + y);
       endShape(CLOSE)
-      pop();
+      fill(255, 0, 0);
+      ellipse(50 + x, 50 + y, 20, 20,);
+  pop();
 
+/*
 
-      push();
+    push();
       beginShape();
       translate(50, 50);
-      rotate(rotation + x + y);
+      rotate(rotation);
       translate(-50, -50);
       vertex(0 + x, 100 + y);
       quadraticVertex(50 + x, 100 + y, 50 + x, 50 + y);
       quadraticVertex(50 + x, 0 + y, 100 + x, 0 + y);
       endShape(CLOSE)
-      pop();
 
+  pop();
+*/
       /*beginShape();
       vertex(0, 100);
       quadraticVertex(50, 100, 50, 50);
