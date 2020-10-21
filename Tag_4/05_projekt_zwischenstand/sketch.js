@@ -1,12 +1,14 @@
 
+let angle=0;
 
 var gui;
 
 var distanz = 100;
-var distanz2 = 200;
-var distanz3 = 300;
-var rotation = 360;
-var farbe = (255, 0, 255);
+var distanz2 = 150;
+var distanz3 = 100;
+var staerke = 360;
+var windrichtung = 360;
+var temperatur = (255, 0, 255);
 
 function setup() {
   createCanvas(displayWidth, displayHeight);
@@ -14,14 +16,14 @@ function setup() {
 
   sliderRange(100, 200);
   var gui = createGui('p5.gui');
-  gui.addGlobals('distanz','rotation', 'farbe');
+  gui.addGlobals('distanz','distanz2', 'staerke', 'temperatur', 'windrichtung');
   noLoop();
 }
 
 function draw() {
   background(0,0,0,50);
   noFill();
-  stroke(farbe, 215, 190, 168);
+  stroke(temperatur, 215, 190, 168);
 
   for (let x = 0; x < width; x += distanz) {
     for (let y = 0; y < height; y += distanz) {
@@ -31,7 +33,7 @@ function draw() {
       beginShape();
 
       translate(50 + x, 50 + y);
-      rotate(rotation);
+      rotate(staerke);
       translate(-1*(50 + x), -1*(50+y));
       vertex(0 + x, 0 + y);
       quadraticVertex(0 + x, 50 + y, 50 + x, 50 + y);
@@ -49,7 +51,7 @@ function draw() {
     push();
       beginShape();
       translate(50 + x, 50 + y);
-      rotate(rotation);
+      rotate(staerke);
       translate(-1*(50 + x), -1*(50+y));
       vertex(0 + x, 100 + y);
       quadraticVertex(50 + x, 100 + y, 50 + x, 50 + y);
@@ -60,7 +62,7 @@ pop();
 }
   }
 
-  stroke(farbe, 50, 190, 168);
+  stroke(temperatur, 50, 190, 168);
 
 
   for (let z = 0; z < width; z += distanz2) {
@@ -71,7 +73,7 @@ pop();
       beginShape();
 
       translate(50 + z, 50 + g);
-      rotate(-rotation);
+      rotate(staerke);
       translate(-1*(50 + z), -1*(50 + g));
       vertex(0 + z, 0 + g);
       quadraticVertex(0 + z, 50 + g, 50 + z, 50 + g);
@@ -87,7 +89,7 @@ for (let z = 0; z < width; z += distanz2) {
 push();
   beginShape();
   translate(50 + z, 50 + g);
-  rotate(-rotation);
+  rotate(staerke);
   translate(-1*(50 + z), -1*(50 + g));
   vertex(0 + z, 100 + g);
   quadraticVertex(50 + z, 100 + g, 50 + z, 50 + g);
@@ -99,24 +101,34 @@ pop();
 
 }}
 
+stroke(temperatur, 180, 250, 250);
 
 for (let n = 0; n < width; n += distanz3) {
+  for (let f = 0; f < width; f += distanz3) {
+
 
 push();
 beginShape();
-translate(50 + n, 50 + n);
-rotate(-rotation);
-translate(-1*(50 + n), -1*(50 + n));
-vertex(0 + n, 100 + n);
-quadraticVertex(50 + n, 100 + n, 50 + n, 50 + n);
-quadraticVertex(50 + n, 0 + n, 100 + n, 0 + n);
+translate(50 + n, 50 + f);
+rotate(-windrichtung);
+translate(-1*(50 + n), -1*(50 + f));
+vertex(0 + n, 100 + f);
+quadraticVertex(50 + n, 100 + f, 50 + n, 50 + f);
 endShape(CLOSE)
 
 
 pop();
 
 }
+}
 
+
+
+    push();
+    rectMode(CENTER);
+    translate(300 + n, 300 + f);
+    ellipse(0 + n, 0 + f, 200, 200);
+    pop();
 
 
 
