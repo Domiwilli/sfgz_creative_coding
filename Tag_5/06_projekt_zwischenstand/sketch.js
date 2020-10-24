@@ -1,3 +1,4 @@
+
 let angle = 0;
 
 var gui;
@@ -5,7 +6,10 @@ var gui;
 var distanz = 100;
 var distanz2 = 150;
 var distanz3 = 100;
-var staerke = 360;
+var staerke = 0;
+var staerkeMin = 0;
+var staerkeMax = 10;
+var staerkeStep = 1;
 var windrichtung = 360;
 var temperatur = (255, 0, 255);
 
@@ -15,8 +19,7 @@ function setup() {
 
   sliderRange(100, 200);
   var gui = createGui('p5.gui');
-  gui.addGlobals('distanz', 'distanz2', 'staerke', 'temperatur', 'windrichtung');
-  noLoop();
+  gui.addGlobals('distanz', 'staerke', 'temperatur', 'windrichtung');
 }
 
 function draw() {
@@ -28,11 +31,9 @@ function draw() {
     for (let y = 0; y < height; y += distanz) {
 
       push();
-
       beginShape();
-
       translate(50 + x, 50 + y);
-      rotate(-staerke);
+      rotate(-angle);
       translate(-1 * (50 + x), -1 * (50 + y));
       vertex(0 + x, 0 + y);
       quadraticVertex(0 + x, 50 + y, 50 + x, 50 + y);
@@ -51,7 +52,7 @@ function draw() {
       push();
       beginShape();
       translate(50 + x, 50 + y);
-      rotate(-staerke);
+      rotate(-angle);
       translate(-1 * (50 + x), -1 * (50 + y));
       vertex(0 + x, 100 + y);
       quadraticVertex(50 + x, 100 + y, 50 + x, 50 + y);
@@ -62,7 +63,7 @@ function draw() {
     }
   }
 
-  stroke(temperatur, 50, 190, 168);
+stroke(temperatur, 50, 190, 168);
 
 
   for (let z = 0; z < width; z += distanz2) {
@@ -73,7 +74,7 @@ function draw() {
       beginShape();
 
       translate(50 + z, 50 + g);
-      rotate(staerke);
+      rotate(angle);
       translate(-1 * (50 + z), -1 * (50 + g));
       vertex(0 + z, 0 + g);
       quadraticVertex(0 + z, 50 + g, 50 + z, 50 + g);
@@ -90,7 +91,7 @@ function draw() {
       push();
       beginShape();
       translate(50 + z, 50 + g);
-      rotate(staerke);
+      rotate(angle);
       translate(-1 * (50 + z), -1 * (50 + g));
       vertex(0 + z, 100 + g);
       quadraticVertex(50 + z, 100 + g, 50 + z, 50 + g);
@@ -124,13 +125,7 @@ function draw() {
     }
   }
 
-
-
-  push();
-  rectMode(CENTER);
-  translate(300 + n, 300 + f);
-  ellipse(0 + n, 0 + f, 200, 200);
-  pop();
+  angle = angle + staerke;
 
 
 
