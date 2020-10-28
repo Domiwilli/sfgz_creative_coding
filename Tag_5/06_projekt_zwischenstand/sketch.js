@@ -11,10 +11,15 @@ var staerkeMin = 0;
 var staerkeMax = 10;
 var staerkeStep = 1;
 var windrichtung = 360;
-var temperatur = (255, 0, 255);
+var temperatur = 0;
+var temperaturMax = 40;
+
+let key='06e280b15621fb57f14de8e91c05e79e'; // https://weatherstack.com/product -- dein key!
 
 function setup() {
   createCanvas(displayWidth, displayHeight);
+  let url = 'https://api.weatherstack.com/current?access_key='+key+'&query=Berlin'; //Achtung gratis key unterstützt SSL nicht
+  loadJSON(url, gotWeather);
   angleMode(DEGREES);
 
   sliderRange(100, 200);
@@ -24,8 +29,8 @@ function setup() {
 
 function draw() {
   background(0, 0, 0, 50);
+  stroke(lerpColor(color('#fc01d6'), color('#04d3fc'), map(temperatur, 0, 40, 0, 1)));
   noFill();
-  stroke(temperatur, 215, 190, 168);
 
   for (let x = 0; x < width; x += distanz) {
     for (let y = 0; y < height; y += distanz) {
@@ -63,7 +68,8 @@ function draw() {
     }
   }
 
-stroke(temperatur, 50, 190, 168);
+//stroke(temperatur, 50, 190, 168);
+stroke(lerpColor(color('#fea8fe'), color('#20658f'), map(temperatur, 0, 40, 0, 1)));
 
 
   for (let z = 0; z < width; z += distanz2) {
@@ -104,7 +110,9 @@ stroke(temperatur, 50, 190, 168);
     }
   }
 
-  stroke(temperatur, 180, 250, 250);
+  //stroke(temperatur, 180, 250, 250);
+  stroke(lerpColor(color('#fdb902'), color('#02fdcc'), map(temperatur, 0, 40, 0, 1)));
+
 
   for (let n = 0; n < width; n += distanz3) {
     for (let f = 0; f < width; f += distanz3) {
@@ -128,5 +136,13 @@ stroke(temperatur, 50, 190, 168);
   angle = angle + staerke;
 
 
+}
+
+function gotWeather(weather) {
+    // Get the wind speed in km
+    staerke = weather.current.wind_speed;
+  //  windrad = map(windstaerke, 0, 200, 0, 10); // in Rotationsgrad mappen. Bei 200stdkm dreht sich das Windrad nun 10 Grad weiter pro Frame
+
+    console.log(staerke)
 
 }
