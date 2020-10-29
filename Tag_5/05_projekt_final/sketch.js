@@ -204,7 +204,7 @@ function draw() {
   pop();
 
   //Grosses Windrad 3
-  
+
   push();
   stroke('#C2C6A7');
   beginShape();
@@ -236,8 +236,7 @@ function draw() {
   ellipse(1150, 550, 20, 20);
   pop();
 
-
-
+  angle = angle + windstaerke;
 
 }
 
