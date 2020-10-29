@@ -2,6 +2,7 @@ var gui;
 
 var distanz = 50;
 var rotation = 360;
+var farbe = (255, 0, 255);
 
 function setup() {
   createCanvas(displayWidth, displayHeight);
@@ -9,7 +10,7 @@ function setup() {
 
   sliderRange(100, 200);
   var gui = createGui('p5.gui');
-  gui.addGlobals('distanz', 'rotation');
+  gui.addGlobals('distanz', 'rotation', 'farbe');
   noLoop();
 }
 
@@ -17,7 +18,7 @@ function draw() {
   background(0, 255);
 
   noFill();
-  stroke(215, 190, 168);
+  stroke(farbe, 215, 190, 168);
   angleMode(DEGREES);
 
   for (let x = 0; x < width; x += distanz) {
@@ -47,6 +48,11 @@ function draw() {
 
       pop();
 
+}
+}
+
+      for (let x = 25; x < width; x += farbe) {
+        for (let y = 25; y < height; y += farbe) {
 
       push();
 
