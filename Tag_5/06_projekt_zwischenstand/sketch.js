@@ -16,6 +16,8 @@ var windrichtung = 360;
 var temperatur = 0;
 var temperaturMax = 40;
 
+//Wetter API verknüpfen
+
 let key = '06e280b15621fb57f14de8e91c05e79e'; // https://weatherstack.com/product -- dein key!
 
 function setup() {
@@ -28,6 +30,8 @@ function setup() {
   var gui = createGui('p5.gui');
   gui.addGlobals('windstaerke', 'temperatur', 'luftfeuchtigkeit', 'windrichtung');
 }
+
+//Windräder wenig Zwischenraum
 
 function draw() {
   background(0, 0, 0, 50);
@@ -69,10 +73,12 @@ function draw() {
     }
   }
 
-  //stroke(temperatur, 50, 190, 168);
+
   stroke(lerpColor(color('#04d3fc'), color('#FA63CC'), map(temperatur, 0, 40, 0, 1)));
   noFill();
 
+
+  //Windräder mit mehr Zwischenraum
 
   for (let z = 0; z < width; z += distanz2) {
     for (let g = 0; g < height; g += distanz2) {
@@ -112,7 +118,8 @@ function draw() {
     }
   }
 
-  //stroke(temperatur, 180, 250, 250);
+  //Windrichtung
+
   noFill();
   stroke(lerpColor(color('#02fdcc'), color('#FC01D6'), map(temperatur, 0, 40, 0, 1)));
 
@@ -132,6 +139,7 @@ function draw() {
 
     }
   }
+  //Grosses Windrad 1
 
   push();
   stroke('#C2C6A7');
@@ -144,6 +152,7 @@ function draw() {
   quadraticVertex(450, 350, 450, 450);
   endShape(CLOSE)
   pop();
+
   push();
   stroke('#C2C6A7');
   beginShape();
@@ -162,6 +171,8 @@ function draw() {
   ellipse(350, 350, 20, 20);
   pop();
 
+  //Grosses Windrad 2
+
   push();
   stroke('#C2C6A7');
   beginShape();
@@ -173,6 +184,7 @@ function draw() {
   quadraticVertex(1050, 150, 1050, 250);
   endShape(CLOSE)
   pop();
+
   push();
   stroke('#C2C6A7');
   beginShape();
@@ -191,7 +203,8 @@ function draw() {
   ellipse(950, 150, 20, 20);
   pop();
 
-
+  //Grosses Windrad 3
+  
   push();
   stroke('#C2C6A7');
   beginShape();
@@ -203,6 +216,7 @@ function draw() {
   quadraticVertex(1250, 550, 1250, 650);
   endShape(CLOSE)
   pop();
+
   push();
   stroke('#C2C6A7');
   beginShape();
@@ -223,10 +237,11 @@ function draw() {
   pop();
 
 
-  angle = angle + windstaerke;
 
 
 }
+
+//Wetter API empfangen
 
 function gotWeather(weather) {
   // Get the wind speed in km
