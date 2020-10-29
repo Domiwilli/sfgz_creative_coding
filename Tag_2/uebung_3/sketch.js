@@ -20,9 +20,7 @@ function draw() {
       }
 
       z++;
-
     }
-
   }
 
 
@@ -44,10 +42,6 @@ function draw() {
 
     }
 
-
-
-
   }
-
 
 }
