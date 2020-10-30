@@ -1,4 +1,5 @@
 let angle = 0;
+let input, button;
 
 var gui;
 
@@ -16,15 +17,21 @@ var windrichtung = 360;
 var temperatur = 0;
 var temperaturMax = 40;
 
-//Wetter API verknüpfen
+//Wetter API Verknüpfung
 
 let key = '06e280b15621fb57f14de8e91c05e79e'; // https://weatherstack.com/product -- dein key!
 
 function setup() {
   createCanvas(displayWidth, displayHeight);
-  let url = 'https://api.weatherstack.com/current?access_key=' + key + '&query=Zürich'; //Achtung gratis key unterstützt SSL nicht
+  let url = 'https://api.weatherstack.com/current?access_key=' + key + '&query=Bern'; //Achtung gratis key unterstützt SSL nicht
   loadJSON(url, gotWeather);
   angleMode(DEGREES);
+
+  input = createInput();
+  input.position(300, 50);
+  button = createButton('SUBMIT');
+  button.position(480, 50);
+  button.mousePressed(reloadJson);
 
   sliderRange(100, 200);
   var gui = createGui('p5.gui');
@@ -35,6 +42,7 @@ function setup() {
 
 function draw() {
   background(0, 0, 0, 50);
+  noFill();
   stroke(lerpColor(color('#20658f'), color('#89094F'), map(temperatur, 0, 40, 0, 1)));
 
   for (let x = 0; x < width; x += luftfeuchtigkeit) {
@@ -73,9 +81,8 @@ function draw() {
     }
   }
 
-
-  stroke(lerpColor(color('#04d3fc'), color('#FA63CC'), map(temperatur, 0, 40, 0, 1)));
   noFill();
+  stroke(lerpColor(color('#04d3fc'), color('#FA63CC'), map(temperatur, 0, 40, 0, 1)));
 
 
   //Windräder mit mehr Zwischenraum
@@ -245,8 +252,18 @@ function draw() {
 function gotWeather(weather) {
   // Get the wind speed in km
   windstaerke = weather.current.wind_speed;
-  windstaerke = map(windstaerke, 0, 200, 0, 20); // in Rotationsgrad mappen. Bei 200stdkm dreht sich das Windrad nun 10 Grad weiter pro Frame
+  windstaerke = map(windstaerke, 0, 100, 0, 10); // in Rotationsgrad mappen. Bei 100stdkm dreht sich das Windrad nun 10 Grad weiter pro Frame
 
   console.log(windstaerke)
 
+}
+
+function reloadJson() {
+  // reload JSon kreiert eine neue url für die API mit dem Ort, den die User eingegeben haben
+
+  let ort = input.value();
+  let url = 'http://api.weatherstack.com/current?access_key=' + key + '&query=' + ort;
+
+  // dann lädt die Funktion gotWeather diese neuen Daten
+  loadJSON(url, gotWeather);
 }
