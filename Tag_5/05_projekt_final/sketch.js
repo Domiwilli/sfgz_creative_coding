@@ -30,7 +30,7 @@ function setup() {
   input = createInput();
   input.position(300, 50);
   button = createButton('SUBMIT');
-  button.position(480, 50);
+  button.position(470, 50);
   button.mousePressed(reloadJson);
 
   sliderRange(100, 200);
