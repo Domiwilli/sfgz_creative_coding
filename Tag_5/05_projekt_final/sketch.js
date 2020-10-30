@@ -252,8 +252,6 @@ function draw() {
 function gotWeather(weather) {
   // Get the wind speed in km
   windstaerke = weather.current.wind_speed;
-  windstaerke = map(windstaerke, 0, 100, 0, 10); // in Rotationsgrad mappen. Bei 100stdkm dreht sich das Windrad nun 10 Grad weiter pro Frame
-
   console.log(windstaerke)
 
 }
