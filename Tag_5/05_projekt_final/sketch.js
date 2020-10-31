@@ -1,24 +1,22 @@
+//Variabeln
 let angle = 0;
 let input, button;
-
-var gui;
-
-var luftfeuchtigkeit = 200;
 
 var distanz2 = 200;
 var distanz3 = 100;
 
+//Variabeln, die im GUI abgebildet werden
+var gui;
+var luftfeuchtigkeit = 200;
 var windstaerke = 0;
 var windstaerkeMin = 0;
 var windstaerkeMax = 10;
 var windstaerkeStep = 1;
-
 var windrichtung = 360;
 var temperatur = 0;
 var temperaturMax = 40;
 
 //Wetter API Verknüpfung
-
 let key = '06e280b15621fb57f14de8e91c05e79e'; // https://weatherstack.com/product -- dein key!
 
 function setup() {
@@ -39,7 +37,6 @@ function setup() {
 }
 
 //Windräder wenig Zwischenraum
-
 function draw() {
   background(0, 0, 0, 50);
   noFill();
@@ -57,15 +54,12 @@ function draw() {
       quadraticVertex(0 + x, 50 + y, 50 + x, 50 + y);
       quadraticVertex(100 + x, 50 + y, 100 + x, 100 + y);
       endShape(CLOSE)
-
       pop();
-
     }
   }
 
   for (let x = 0; x < width; x += luftfeuchtigkeit) {
     for (let y = 0; y < height; y += luftfeuchtigkeit) {
-
 
       push();
       beginShape();
@@ -76,7 +70,6 @@ function draw() {
       quadraticVertex(50 + x, 100 + y, 50 + x, 50 + y);
       quadraticVertex(50 + x, 0 + y, 100 + x, 0 + y);
       endShape(CLOSE)
-
       pop();
     }
   }
@@ -86,14 +79,11 @@ function draw() {
 
 
   //Windräder mit mehr Zwischenraum
-
   for (let z = 0; z < width; z += distanz2) {
     for (let g = 0; g < height; g += distanz2) {
 
       push();
-
       beginShape();
-
       translate(50 + z, 50 + g);
       rotate(angle);
       translate(-1 * (50 + z), -1 * (50 + g));
@@ -101,7 +91,6 @@ function draw() {
       quadraticVertex(0 + z, 50 + g, 50 + z, 50 + g);
       quadraticVertex(100 + z, 50 + g, 100 + z, 100 + g);
       endShape(CLOSE)
-
       pop();
     }
   }
@@ -118,21 +107,16 @@ function draw() {
       quadraticVertex(50 + z, 100 + g, 50 + z, 50 + g);
       quadraticVertex(50 + z, 0 + g, 100 + z, 0 + g);
       endShape(CLOSE)
-
-
       pop();
-
     }
   }
 
   //Windrichtung
-
   noFill();
   stroke(lerpColor(color('#02fdcc'), color('#FC01D6'), map(temperatur, 0, 40, 0, 1)));
 
   for (let n = 0; n < width; n += distanz3) {
     for (let f = 0; f < width; f += distanz3) {
-
 
       push();
       beginShape();
@@ -143,11 +127,10 @@ function draw() {
       quadraticVertex(50 + n, 100 + f, 50 + n, 50 + f);
       endShape(CLOSE)
       pop();
-
     }
   }
-  //Grosses Windrad 1
 
+  //Grosses Windrad 1
   push();
   stroke('#C2C6A7');
   beginShape();
@@ -179,7 +162,6 @@ function draw() {
   pop();
 
   //Grosses Windrad 2
-
   push();
   stroke('#C2C6A7');
   beginShape();
@@ -211,7 +193,6 @@ function draw() {
   pop();
 
   //Grosses Windrad 3
-
   push();
   stroke('#C2C6A7');
   beginShape();
@@ -236,7 +217,6 @@ function draw() {
   endShape(CLOSE)
   pop();
 
-
   push();
   noStroke();
   fill('#ffffff');
@@ -244,21 +224,17 @@ function draw() {
   pop();
 
   angle = angle + windstaerke;
-
 }
 
 //Wetter API empfangen
-
 function gotWeather(weather) {
   // Get the wind speed in km
   windstaerke = weather.current.wind_speed;
   console.log(windstaerke)
-
 }
 
+// reload JSon kreiert eine neue url für die API mit dem Ort, den die User eingegeben haben
 function reloadJson() {
-  // reload JSon kreiert eine neue url für die API mit dem Ort, den die User eingegeben haben
-
   let ort = input.value();
   let url = 'https://api.weatherstack.com/current?access_key=' + key + '&query=' + ort;
 
